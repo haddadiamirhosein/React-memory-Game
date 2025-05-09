@@ -1,4 +1,4 @@
-const cards = [
+export const cards = [
     {id:1 , icon:"🍎"},
     {id:2 , icon:"🍌"},
     {id:3 , icon:"🍇"},

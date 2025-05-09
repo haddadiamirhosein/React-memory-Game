@@ -1,11 +1,12 @@
 import './App.css'
 import CardGame from './components/CardGame'
+import GameBoard from './components/GameBoard'
 
 function App() {
  
   return (
     <>
-      <p>null</p>
+      <GameBoard/>
     </>
   )
 }
