@@ -10,13 +10,14 @@ import CardActionArea from '@mui/material/CardActionArea';
 interface Props{
   icon:string;
   isFlipped:boolean;
+  onHandleClick : () => void;
 }
 
-function CardGame({icon , isFlipped}:Props) {
+function CardGame({icon , isFlipped , onHandleClick}:Props) {
   return (
     <Card>
           <CardActionArea
-            onClick={() => console.log("me")}
+            onClick={onHandleClick}
             data-active={ undefined}
             sx={{
               height: '100%',
