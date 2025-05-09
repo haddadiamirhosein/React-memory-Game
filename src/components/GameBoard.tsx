@@ -2,12 +2,16 @@ import Grid from '@mui/material/Grid'
 import { cards } from '../data/cards'
 import React, { useEffect, useState } from 'react'
 import CardGame from './CardGame'
+import cardService, { type Card } from '../services/cardService'
+
+
 
 function GameBoard() {
 
-    const [selectedcards , SetselectedCards] = useState<number[]>([])
+    const [selectedcards , SetselectedCards] = useState<string[]>([])
+    const [newCards , SetnewCards] = useState<Card[]>([])
 
-    const handleCardClick = (id:number) => {
+    const handleCardClick = (id:string) => {
         
         if (selectedcards.length === 2 || selectedcards.includes(id))
             return
@@ -16,7 +20,13 @@ function GameBoard() {
         SetselectedCards(newSelected)
     }
 
+    useEffect(() =>{
+      const newCard = cardService(cards);
+      SetnewCards(newCard)
+    },[])
+
     useEffect(() => {
+
         if (selectedcards.length === 1) {
           const timeout = setTimeout(() => {
             SetselectedCards([]);
@@ -30,11 +40,12 @@ function GameBoard() {
           }, 1000);
           return () => clearTimeout(timeout);
         }
+
       }, [selectedcards]);
 
   return (
 <Grid container spacing={2} >
-  {cards.map(card =>(
+  {newCards.map(card =>(
      <Grid size={{ xs: 4, md: 3 , sm:4}} key={card.id}>
         <CardGame 
             onHandleClick={() => handleCardClick(card.id)} 

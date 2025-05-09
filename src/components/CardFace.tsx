@@ -4,7 +4,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 
 interface Props{
     icon : string;
-    onClickitme ?: () => void | null;
+    onClickitme ?: () => void;
 }
 
 function CardFace({icon , onClickitme}:Props) {

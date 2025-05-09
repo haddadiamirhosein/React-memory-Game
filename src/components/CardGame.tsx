@@ -10,7 +10,7 @@ interface Props{
 
 function CardGame({icon , isFlipped , onHandleClick}:Props) {
   return (
-    <FlipCardContainer onClick={onHandleClick}>
+    <FlipCardContainer>
         <FlipCardInner isFlipped={isFlipped}>
 
           <FlipCardFront>
