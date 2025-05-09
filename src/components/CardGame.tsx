@@ -1,10 +1,5 @@
-
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import CardActionArea from '@mui/material/CardActionArea';
+import {FlipCardContainer, FlipCardInner, FlipCardFront, FlipCardBack} from "../styles/FlipCardStyles"
+import CardFace from './CardFace';
 
 
 interface Props{
@@ -15,30 +10,23 @@ interface Props{
 
 function CardGame({icon , isFlipped , onHandleClick}:Props) {
   return (
-    <Card>
-          <CardActionArea
-            onClick={onHandleClick}
-            data-active={ undefined}
-            sx={{
-              height: '100%',
-              '&[data-active]': {
-                backgroundColor: 'action.selected',
-                '&:hover': {
-                  backgroundColor: 'action.selectedHover',
-                },
-              },
-            }}
-          >
-            <CardContent sx={{ height: '100%' }}>
-              <Typography variant="h5" component="div">
-                {isFlipped ? icon : "❓"}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                "for later"
-              </Typography>
-            </CardContent>
-          </CardActionArea>
-    </Card>
+    <FlipCardContainer onClick={onHandleClick}>
+        <FlipCardInner isFlipped={isFlipped}>
+
+          <FlipCardFront>
+
+            <CardFace icon='❓' onClickitme={onHandleClick}/>
+
+          </FlipCardFront>
+
+          <FlipCardBack>
+              
+            <CardFace icon={icon} />
+
+          </FlipCardBack>
+
+        </FlipCardInner>
+    </FlipCardContainer>
   )
 }
 

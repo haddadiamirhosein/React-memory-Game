@@ -5,6 +5,7 @@ export const FlipCardContainer = styled("div")(() => ({
   perspective: "1000px",
   width: "150px",
   height: "200px",
+  cursor:"pointer",
 }));
 
 export const FlipCardInner = styled("div")(({ isFlipped }: { isFlipped: boolean }) => ({

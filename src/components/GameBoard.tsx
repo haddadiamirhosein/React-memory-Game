@@ -11,7 +11,7 @@ function GameBoard() {
         
         if (selectedcards.length === 2 || selectedcards.includes(id))
             return
-
+        
         const newSelected = [...selectedcards , id]
         SetselectedCards(newSelected)
     }
