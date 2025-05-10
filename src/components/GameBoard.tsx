@@ -56,9 +56,9 @@ function GameBoard() {
   }, [selectedcards, newCards]);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing="20px">
       {newCards.map((card) => (
-        <Grid size={{ xs: 4, md: 3, sm: 4 }} key={card.id}>
+        <Grid size={{ xs: 6, md: 3, sm: 4 }} key={card.id}>
           <CardGame
             onHandleClick={() => handleCardClick(card.id)}
             icon={card.icon}
