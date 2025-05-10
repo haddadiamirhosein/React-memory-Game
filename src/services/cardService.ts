@@ -1,22 +1,20 @@
-
 export interface Card {
-    id : string;
-    icon : string;
-    pairId : string;
+  id: string;
+  icon: string;
+  pairId: string;
 }
 
+const cardService = (Items: Card[]): Card[] => {
+  const duplicatedCards = Items.flatMap((item) => {
+    const pairId = crypto.randomUUID();
+    return [
+      { id: crypto.randomUUID(), icon: item.icon, pairId: pairId },
+      { id: crypto.randomUUID(), icon: item.icon, pairId: pairId },
+    ];
+  });
 
-const cardService  = (Items : Card[]) : Card[] => {
+  const finalCard = duplicatedCards.sort(() => Math.random() - 0.5);
+  return finalCard;
+};
 
-    const pairId = crypto.randomUUID()
-    
-    const duplicatedCards = Items.flatMap((item) => [
-        {pairId , id : crypto.randomUUID() , icon : item.icon},
-        {pairId , id : crypto.randomUUID() , icon : item.icon},
-    ])
-    
-    const finalCard = duplicatedCards.sort(() => Math.random() - 0.5)
-    return finalCard
-}
-
-export default cardService
+export default cardService;
