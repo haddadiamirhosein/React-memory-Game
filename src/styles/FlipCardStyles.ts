@@ -5,17 +5,19 @@ export const FlipCardContainer = styled("div")(() => ({
   perspective: "1000px",
   width: "150px",
   height: "200px",
-  cursor:"pointer",
+  cursor: "pointer",
 }));
 
-export const FlipCardInner = styled("div")(({ isFlipped }: { isFlipped: boolean }) => ({
-  width: "100%",
-  height: "100%",
-  position: "relative",
-  transformStyle: "preserve-3d",
-  transition: "transform 0.6s",
-  transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
-}));
+export const FlipCardInner = styled("div")(
+  ({ isFlipped }: { isFlipped: boolean }) => ({
+    width: "100%",
+    height: "100%",
+    position: "relative",
+    transformStyle: "preserve-3d",
+    transition: "transform 0.6s",
+    transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+  })
+);
 
 export const FlipCardFront = styled(Card)(() => ({
   width: "100%",
@@ -24,11 +26,13 @@ export const FlipCardFront = styled(Card)(() => ({
   backfaceVisibility: "hidden",
 }));
 
-export const FlipCardBack = styled(Card)(() => ({
-  width: "100%",
-  height: "100%",
-  position: "absolute",
-  backfaceVisibility: "hidden",
-  transform: "rotateY(180deg)",
-  backgroundColor: "#f8b400",
-}));
+export const FlipCardBack = styled(Card)(
+  ({ isMatched }: { isMatched: boolean }) => ({
+    width: "100%",
+    height: "100%",
+    position: "absolute",
+    backfaceVisibility: "hidden",
+    transform: "rotateY(180deg)",
+    backgroundColor: isMatched ? "#50c878" : "#f8b400",
+  })
+);

@@ -65,6 +65,7 @@ function GameBoard() {
             isFlipped={
               selectedcards.includes(card.id) || matchedCards.includes(card.id)
             }
+            isMatched={matchedCards.includes(card.id)}
           />
         </Grid>
       ))}

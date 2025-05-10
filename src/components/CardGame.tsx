@@ -1,33 +1,32 @@
-import {FlipCardContainer, FlipCardInner, FlipCardFront, FlipCardBack} from "../styles/FlipCardStyles"
-import CardFace from './CardFace';
+import {
+  FlipCardContainer,
+  FlipCardInner,
+  FlipCardFront,
+  FlipCardBack,
+} from "../styles/FlipCardStyles";
+import CardFace from "./CardFace";
 
-
-interface Props{
-  icon:string;
-  isFlipped:boolean;
-  onHandleClick : () => void;
+interface Props {
+  icon: string;
+  isFlipped: boolean;
+  isMatched: boolean;
+  onHandleClick: () => void;
 }
 
-function CardGame({icon , isFlipped , onHandleClick}:Props) {
+function CardGame({ icon, isFlipped, isMatched, onHandleClick }: Props) {
   return (
     <FlipCardContainer>
-        <FlipCardInner isFlipped={isFlipped}>
+      <FlipCardInner isFlipped={isFlipped}>
+        <FlipCardFront>
+          <CardFace icon="❓" onClickitme={onHandleClick} />
+        </FlipCardFront>
 
-          <FlipCardFront>
-
-            <CardFace icon='❓' onClickitme={onHandleClick}/>
-
-          </FlipCardFront>
-
-          <FlipCardBack>
-              
-            <CardFace icon={icon} />
-
-          </FlipCardBack>
-
-        </FlipCardInner>
+        <FlipCardBack isMatched={isMatched}>
+          <CardFace icon={icon} />
+        </FlipCardBack>
+      </FlipCardInner>
     </FlipCardContainer>
-  )
+  );
 }
 
-export default CardGame
+export default CardGame;
