@@ -3,7 +3,7 @@ import { cards } from "../data/cards";
 import { useEffect, useState } from "react";
 import CardGame from "./CardGame";
 import cardService, { type Card } from "../services/cardService";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
 function GameBoard() {
@@ -11,11 +11,16 @@ function GameBoard() {
   const [selectedcards, SetselectedCards] = useState<string[]>([]);
   const [newCards, SetnewCards] = useState<Card[]>([]);
 
+  const [seconds, setSeconds] = useState(0);
+  const [isTimerActive, setIsTimerActive] = useState(true);
+
   const handleRestart = () => {
     const newCard = cardService(cards);
     SetnewCards(newCard);
     SetselectedCards([]);
     SetmatchedCards([]);
+    setSeconds(0);
+    setIsTimerActive(true);
   };
 
   const handleCardClick = (id: string) => {
@@ -52,6 +57,23 @@ function GameBoard() {
   }, [selectedcards]);
 
   useEffect(() => {
+    let timer: ReturnType<typeof setInterval>;
+    if (isTimerActive) {
+      timer = setInterval(() => {
+        setSeconds((prev) => prev + 1);
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [isTimerActive]);
+
+  useEffect(() => {
+    if (matchedCards.length === newCards.length && newCards.length > 0) {
+      setIsTimerActive(false);
+      console.log("done")
+    }
+  }, [matchedCards, newCards]);
+
+  useEffect(() => {
     if (selectedcards.length === 2) {
       const [firstId, secondId] = selectedcards;
       const firstCard = newCards.find((card) => card.id === firstId);
@@ -84,6 +106,10 @@ function GameBoard() {
       >
         Restart
       </Button>
+
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        Time: {seconds} seconds
+      </Typography>
 
       <Grid container spacing="20px" justifyContent="center">
         {newCards.map((card) => (
